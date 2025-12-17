@@ -1,0 +1,33 @@
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# ignore actual config, but keep config.example.json
+config.json
+.env
+
+# folder where video links are saved
+output/
+*.txt
+
+/bin/
+/dist/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+
+/vendor/
+
+.zed/
+**/.zed/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
