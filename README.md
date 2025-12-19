@@ -8,7 +8,7 @@ A lightweight script to scrape video links from YouTube Shorts and TikTok based 
 2. **Configure credentials (refer to [config.example.json](https://github.com/llan0/link-fetcher/blob/main/config.example.json))**
 3. **Fill in credentials** 
 > YouTube: Requires Google Cloud API Key with "YouTube Data API v3" enabled <br>
-> TikTok: Requires a RapidAPI key (specifically [tiktok](https://rapidapi.com/Lundehund/api/tiktok-api23/))
+> TikTok: Requires a RapidAPI key (specifically [tiktok](https://rapidapi.com/Lundehund/api/tiktok-api23/)) <br>
 > Instagram: Requires a RapidAPI key (specifically [instagram](https://rapidapi.com/3205/api/instagram120))
 
 <hr>
