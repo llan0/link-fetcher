@@ -20,22 +20,22 @@ const outputDir = "output"
 func main() {
 	runYoutube := flag.Bool("youtube", false, "Run YouTube scraper")
 	runTiktok := flag.Bool("tiktok", false, "Run TikTok scraper")
-	// runInsta := flag.Bool("instagram", false, "Run Instagram scraper")
+	runInsta := flag.Bool("instagram", false, "Run Instagram scraper")
 	runAll := flag.Bool("all", false, "Run ALL scrapers")
 	flag.Parse()
 
 	if *runAll {
 		*runYoutube = true
 		*runTiktok = true
-		// *runInsta = true
+		*runInsta = true
 	}
 
-	if !*runYoutube && !*runTiktok {
-		fmt.Println("Usage: make -tiktok (or -youtube, -all)")
+	if !*runYoutube && !*runTiktok && !*runInsta {
+		fmt.Println("Usage: make -tiktok (or -youtube, -instagram, -all)")
 		return
 	}
 
-	// 1. Create Output Directory
+	// Create output directory
 	if err := os.MkdirAll(outputDir, 0755); err != nil {
 		log.Fatalf("Failed to create output directory: %v", err)
 	}
@@ -78,7 +78,19 @@ func main() {
 		})
 	}
 
-	// TODO: Instagram
+	// Instagram
+	if *runInsta {
+		wg.Add(1)
+		filename := filepath.Join(outputDir, "instagram.txt")
+
+		go runScraper(ctx, &wg, filename, &fetcher.InstagramFetcher{
+			RapidAPIKey:  cfg.APIKeys.RapidAPIKey,
+			RapidAPIHost: cfg.APIKeys.InstagramHost,
+			Username:     cfg.Accounts.InstagramUsername,
+			Start:        cfg.StartDate,
+			End:          cfg.EndDate,
+		})
+	}
 
 	wg.Wait()
 	fmt.Println("Done!")

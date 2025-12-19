@@ -8,3 +8,6 @@ tiktok:
 
 youtube:
 	go run main.go -youtube
+
+instagram:
+	go run main.go -instagram
